@@ -1,0 +1,36 @@
+
+
+@include for-tablet-up{
+    .main{
+        height: 850px;
+        display: flex;
+        flex-direction: row-reverse;
+        padding: 0 40px;
+    }
+    .preview{
+        width: 80%;
+        height: auto;
+        margin-top: 23px;
+        margin-bottom: 21px;
+        border-radius: 6px;
+        padding: 50px 0 80px;
+    }  
+    
+    .form_wrapper{
+        width: 400px;
+        margin-block-end: auto;
+        padding-right: 30px;
+    }
+    
+    .preview{
+        border: 3px solid $dark-green-blue;
+        border-radius: 8px;
+    }
+}
+
+@include for-desktop-up {
+    .preview_card-container{
+        height: 470px;
+        width: 340px;
+    }
+}
