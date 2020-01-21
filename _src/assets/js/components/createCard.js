@@ -35,7 +35,7 @@ function sendForm(event) {
     localStorage.setItem("image", photoSend);
   }
   //creo json
-  const datos = {
+  const cardData = {
     palette: paletteChosen,
     font: fontChosen,
     name: userName.value,
@@ -47,10 +47,12 @@ function sendForm(event) {
     photo: photoSend
   };
   //petición
-
+  getCardFromApi();
+}
+const getCardFromApi = cardData => {
   fetch("https://us-central1-awesome-cards-cf6f0.cloudfunctions.net/card/", {
     method: "POST",
-    body: JSON.stringify(datos),
+    body: JSON.stringify(cardData),
     headers: {
       "content-type": "application/json"
     }
@@ -60,7 +62,8 @@ function sendForm(event) {
     .catch(function(error) {
       console.log(error);
     });
-}
+};
+
 function showURL(data) {
   const twitterURL = document.createElement("span");
   twitterURL.style.textAlign = "center";
