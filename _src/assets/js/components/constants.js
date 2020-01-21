@@ -1,25 +1,7 @@
 "use strict";
 
-let paletteChosen = "";
-let fontChosen = "";
-
-const inputElements = document.querySelectorAll(".input");
-
-const createCardButton = document.querySelector("#createCardButton");
-const errorMessage = document.querySelector(".error-message");
-const twitterContainer = document.querySelector("#twitterContainer");
-const twitterBtn = document.querySelector("#twitterBtn");
-const twitterMessage = document.querySelector("#twitterMessage");
-const linkedInBtn = document.querySelector("#linkedInBtn");
-
-const phoneIcon = document.querySelector("#phone-icon");
-const emailIcon = document.querySelector("#email-icon");
-const linkedinIcon = document.querySelector("#linkedin-icon");
-const githubIcon = document.querySelector("#github-icon");
-const phoneItem = document.querySelector(".item_phone");
-const emailItem = document.querySelector(".item_email");
-const linkedinItem = document.querySelector(".item_linkedin");
-const githubItem = document.querySelector(".item_github");
+// let paletteChosen = "";
+// let fontChosen = "";
 
 module.exports = {
   designContainer: "#designContainer",
@@ -38,7 +20,6 @@ module.exports = {
   font1: "#fieldset__design--font-1",
   font2: "#fieldset__design--font-2",
   font3: "#fieldset__design--font-3",
-  inputElements: ".input",
   userName: "#name",
   userJob: "#job-title",
   userEmail: "#email",

@@ -1,28 +1,27 @@
 "use strict";
 
 const constants = require("./constants");
-const userData = require("./userData");
 const avatar = require("./avatar");
+const palettes = require("./palettes");
+const fonts = require("./fonts");
+
 // const api = require("../services/api");
 const userName = document.querySelector(constants.userName);
+const userJob = document.querySelector(constants.userJob);
+const userEmail = document.querySelector(constants.userEmail);
+const userTel = document.querySelector(constants.userTel);
+const userLinkedin = document.querySelector(constants.userLinkedin);
+const userGithub = document.querySelector(constants.userGithub);
+
+const createCardButton = document.querySelector(constants.createCardButton);
+const twitterContainer = document.querySelector(constants.twitterContainer);
+const twitterBtn = document.querySelector(constants.twitterBtn);
+const twitterMessage = document.querySelector(constants.twitterMessage);
+const linkedInBtn = document.querySelector(constants.linkedInBtn);
+const paletteChosen = palettes.paletteChosen;
+const fontChosen = fonts.fontChosen;
 
 let photoSend = "";
-
-function _checkFilledInputs() {
-  if (
-    userData.nameValidation() === false ||
-    userData.jobValidation() === false ||
-    userData.emailValidation() === false ||
-    userLinkedin.value === "" ||
-    userGithub.value === ""
-  ) {
-    createCardButton.disabled = true;
-    errorMessage.classList.remove("hidden");
-  } else {
-    createCardButton.disabled = false;
-    errorMessage.classList.add("hidden");
-  }
-}
 
 function sendForm(event) {
   event.preventDefault();
@@ -88,6 +87,4 @@ function shareTwitter(url) {
 
 createCardButton.addEventListener("click", sendForm);
 
-module.exports = {
-  checkFilledInputs: _checkFilledInputs
-};
+module.exports = {};

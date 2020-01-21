@@ -1,7 +1,7 @@
 "use strict";
 
 const constants = require("./constants");
-const createCard = require("./createCard");
+const validation = require("./validation");
 
 const designContainer = document.querySelector(constants.designContainer);
 const fillInContainer = document.querySelector(constants.fillInContainer);
@@ -13,6 +13,7 @@ const design = document.querySelector(constants.design);
 const fillIn = document.querySelector(constants.fillIn);
 const share = document.querySelector(constants.share);
 const defaultImage = constants.defaultImage;
+const twitterContainer = document.querySelector(constants.twitterContainer);
 
 // start page functions
 
@@ -49,5 +50,5 @@ function toggleShare() {
   arrowFillIn.classList.remove("rotate");
 }
 shareContainer.addEventListener("click", toggleShare);
-shareContainer.addEventListener("click", createCard.checkFilledInputs);
+shareContainer.addEventListener("click", validation.checkFilledInputs);
 twitterContainer.classList.add("hidden");
