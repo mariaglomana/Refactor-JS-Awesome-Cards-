@@ -10,10 +10,7 @@ const design = document.querySelector('#design');
 const fillIn = document.querySelector('#fillIn');
 const share = document.querySelector('#share');
 
-
-
 let paletteChosen = '';
-
 
 let fontChosen = '';
 
@@ -79,4 +76,10 @@ module.exports = {
     githubItem: '.item_github',
     iconItems: '#preview_card-icons',
     iconButtons: '.item_btn',
+    profileImage: '.js__profile-image',
+    profilePreview: '.js__profile-preview',
+    uploadBtn: '.js__profile-trigger',
+    fileField: '.js__profile-upload-btn',
+    defaultImage: './assets/images/portrait.jpg',
+    reseterButton: '#buttonReset',
 };

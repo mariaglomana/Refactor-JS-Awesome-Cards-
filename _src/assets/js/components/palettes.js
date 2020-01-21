@@ -6,20 +6,11 @@ const palette1 = document.querySelector(constants.palette1);
 const palette2 = document.querySelector(constants.palette2);
 const palette3 = document.querySelector(constants.palette3);
 const palette4 = document.querySelector(constants.palette4);
-
-const font1 = document.querySelector(constants.font1);
-const font2 = document.querySelector(constants.font2);
-const font3 = document.querySelector(constants.font3);
-
 const previewCardName = document.querySelector(constants.previewCardName);
 const previewCardHead = document.querySelector(constants.previewCardHead);
-const previewCardJob = document.querySelector(constants.previewCardJob);
-
 const iconItems = document.querySelectorAll(constants.iconItems);
 const iconButtons = document.querySelectorAll(constants.iconButtons);
-
 let paletteChosen;
-let fontChosen;
 
 //COLORS
 
@@ -41,16 +32,17 @@ function _getPalette() {
     palette1.setAttribute('checked', true);
     applyPalette();
   }
-}
+};
+
 function choosePalette() {
   paletteChosen = event.currentTarget.value;
   localStorage.setItem('palette', paletteChosen);
   applyPalette();
-}
+};
 
 function applyPalette() {
   if (palette1.checked) {
-    applyPalette1();
+    _applyPalette1();
   } else if (palette2.checked) {
     applyPalette2();
   } else if (palette3.checked) {
@@ -58,15 +50,9 @@ function applyPalette() {
   } else if (palette4.checked) {
     applyPalette4();
   }
-}
+};
 
-palette1.addEventListener('click', choosePalette);
-palette2.addEventListener('click', choosePalette);
-palette3.addEventListener('click', choosePalette);
-palette4.addEventListener('click', choosePalette);
-
-
-function applyPalette1() {
+function _applyPalette1() {
   previewCardName.classList.add('darkGreenBlue');
   previewCardName.classList.remove('driedBlood', 'slate', 'jungleGreen');
   previewCardHead.classList.add('borderPalette1');
@@ -78,7 +64,7 @@ function applyPalette1() {
   for (const IconButton of iconButtons) {
     IconButton.style.borderColor = '#a2deaf';
   }
-}
+};
 
 function applyPalette2() {
   previewCardName.classList.add('driedBlood');
@@ -92,7 +78,7 @@ function applyPalette2() {
   for (const IconButton of iconButtons) {
     IconButton.style.borderColor = '#e95626';
   }
-}
+};
 
 function applyPalette3() {
   previewCardName.classList.add('slate');
@@ -106,7 +92,8 @@ function applyPalette3() {
   for (const IconButton of iconButtons) {
     IconButton.style.borderColor = '#a0c0cf';
   }
-}
+};
+
 function applyPalette4() {
   previewCardName.classList.add('jungleGreen');
   previewCardName.classList.remove('darkGreenBlue', 'driedBlood', 'slate');
@@ -119,64 +106,14 @@ function applyPalette4() {
   for (const IconButton of iconButtons) {
     IconButton.style.borderColor = '#f15f06';
   }
-}
+};
 
-//FONTS
-
-function _getFont() {
-  if (localStorage.getItem('font')) {
-    fontChosen = localStorage.getItem('font');
-    if (fontChosen === '1') {
-      font1.setAttribute('checked', true);
-    } else if (fontChosen === '2') {
-      font2.setAttribute('checked', true);
-    } else if (fontChosen === '3') {
-      font3.setAttribute('checked', true);
-    }
-    applyFont();
-  }
-  else {
-    font1.setAttribute('checked', true);
-    applyFont();
-  }
-}
-const chooseFont = (event) => {
-  fontChosen = event.currentTarget.value;
-  localStorage.setItem('font', fontChosen);
-  applyFont();
-};
-const applyFont = () => {
-  if (font1.checked) {
-    applyFont1();
-  } else if (font2.checked) {
-    applyFont2();
-  } else {
-    applyFont3();
-  }
-};
-const applyFont1 = () => {
-  previewCardName.classList.add('fontMontserratBold');
-  previewCardName.classList.remove('fontCherrySwashBold', 'fontKalamBold');
-  previewCardJob.classList.add('fontMontserratRegular');
-  previewCardJob.classList.remove('fontCherrySwashRegular', 'fontKalamRegular');
-};
-const applyFont2 = () => {
-  previewCardName.classList.add('fontCherrySwashBold');
-  previewCardName.classList.remove('fontMontserratBold', 'fontKalamBold');
-  previewCardJob.classList.add('fontCherrySwashRegular');
-  previewCardJob.classList.remove('fontMontserratRegular', 'fontKalamRegular');
-};
-const applyFont3 = () => {
-  previewCardName.classList.add('fontKalamBold');
-  previewCardName.classList.remove('fontMontserratBold', 'fontCherrySwashBold');
-  previewCardJob.classList.add('fontKalamRegular');
-  previewCardJob.classList.remove('fontMontserratRegular', 'fontCherrySwashRegular');
-};
-font1.addEventListener('click', chooseFont);
-font2.addEventListener('click', chooseFont);
-font3.addEventListener('click', chooseFont);
+palette1.addEventListener('click', choosePalette);
+palette2.addEventListener('click', choosePalette);
+palette3.addEventListener('click', choosePalette);
+palette4.addEventListener('click', choosePalette);
 
 module.exports = {
   getPalette: _getPalette,
-  getFont: _getFont,
-};
+  applyPalette1: _applyPalette1,
+ };

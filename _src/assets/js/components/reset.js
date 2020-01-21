@@ -1,11 +1,31 @@
 'use strict';
 
 const constants = require('./constants');
+const palettes = require('./palettes');
+const fonts = require('./fonts');
 
+const palette1 = document.querySelector(constants.palette1);
+const font1 = document.querySelector(constants.font1);
 const userName = document.querySelector(constants.userName);
-
-
-const reseterButton = document.querySelector('#buttonReset');
+const userJob = document.querySelector(constants.userJob);
+const previewCardName = document.querySelector(constants.previewCardName);
+const previewCardJob = document.querySelector(constants.previewCardJob);
+const profileImage = document.querySelector(constants.profileImage);
+const profilePreview = document.querySelector(constants.profilePreview);
+const phoneIcon = document.querySelector(constants.phoneIcon);
+const userTel = document.querySelector(constants.userTel);
+const phoneItem = document.querySelector(constants.phoneItem);
+const emailIcon = document.querySelector(constants.emailIcon);
+const userEmail = document.querySelector(constants.userEmail);
+const emailItem = document.querySelector(constants.emailItem);
+const linkedinIcon = document.querySelector(constants.linkedinIcon);
+const userLinkedin = document.querySelector(constants.userLinkedin);
+const linkedinItem = document.querySelector(constants.linkedinItem);
+const githubIcon = document.querySelector(constants.githubIcon);
+const userGithub = document.querySelector(constants.userGithub);
+const githubItem = document.querySelector(constants.githubItem);
+const defaultImage = constants.defaultImage;
+const reseterButton = document.querySelector(constants.reseterButton);
 
 const resetLocalStorage = () => {
   localStorage.clear('palette');
@@ -20,11 +40,11 @@ const resetLocalStorage = () => {
 };
 
 const resetColorPalette = () => {
-  applyPalette1();
+  palettes.applyPalette1();
   palette1.checked = true;
 };
 const resetFont = () => {
-  applyFont1();
+  fonts.applyFont1();
   font1.checked = true;
 };
 

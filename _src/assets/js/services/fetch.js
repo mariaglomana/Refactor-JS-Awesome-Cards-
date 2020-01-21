@@ -2,16 +2,13 @@
 
 const constants = require('../components/constants');
 const userData = require('../components/userData');
-
-
+const avatar = require('../components/avatar');
 const userName = document.querySelector(constants.userName);
-
 
 let photoSend = '';
 
 function _checkFilledInputs() {
-
-  if (nameValidation() === false || jobValidation() === false || emailValidation() === false || userLinkedin.value === '' || userGithub.value === '') {
+  if (userData.nameValidation() === false || userData.jobValidation() === false || userData.emailValidation() === false || userLinkedin.value === '' || userGithub.value === '') {
     createCardButton.disabled = true;
     errorMessage.classList.remove('hidden');
 
@@ -19,20 +16,19 @@ function _checkFilledInputs() {
     createCardButton.disabled = false;
     errorMessage.classList.add('hidden');
   }
-
-}
+};
 
 function sendForm(event) {
   event.preventDefault();
 
-  if (!fr.result && !localStorage.getItem('image')) {
+  if (!avatar.fr.result && !localStorage.getItem('image')) {
     photoSend = defaultImage;
   }
-  else if (!fr.result && localStorage.getItem('image')) {
+  else if (!avatar.fr.result && localStorage.getItem('image')) {
     photoSend = localStorage.getItem('image');
   }
   else {
-    photoSend = fr.result;
+    photoSend = avatar.fr.result;
     localStorage.setItem('image', photoSend);
   }
   //creo json

@@ -1,11 +1,13 @@
 'use strict';
 
+const constants = require('./constants');
+
 const fr = new FileReader();
-const uploadBtn = document.querySelector('.js__profile-trigger');
-const fileField = document.querySelector('.js__profile-upload-btn');
-const profileImage = document.querySelector('.js__profile-image');
-const profilePreview = document.querySelector('.js__profile-preview');
-const defaultImage = './assets/images/portrait.jpg';
+const uploadBtn = document.querySelector(constants.uploadBtn);
+const fileField = document.querySelector(constants.fileField);
+const profileImage = document.querySelector(constants.profileImage);
+const profilePreview = document.querySelector(constants.profilePreview);
+const defaultImage = constants.defaultImage;
 
 
 /**
@@ -67,4 +69,5 @@ fileField.addEventListener('change', getImage);
 
 module.exports = {
   getProfileImage: _getProfileImage,
+  fr: fr,
 };

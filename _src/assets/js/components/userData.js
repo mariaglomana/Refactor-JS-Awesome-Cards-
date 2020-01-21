@@ -1,8 +1,9 @@
 'use strict';
 
 const constants = require('./constants');
-const palette = require('./palettes');
-const avatar = require('./get-avatar');
+const palettes = require('./palettes');
+const fonts = require('./fonts');
+const avatar = require('./avatar');
 
 const userName = document.querySelector(constants.userName);
 const userJob = document.querySelector(constants.userJob);
@@ -112,7 +113,7 @@ userGithub.addEventListener('keyup', addGithub);
 
 //FORM VALIDATION
 
-function nameValidation() {
+function _nameValidation() {
   if (!(/^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/.test(userName.value))) {
     userName.nextElementSibling.innerHTML = '*Introduzca un nombre válido';
     return false;
@@ -120,8 +121,9 @@ function nameValidation() {
     userName.nextElementSibling.innerHTML = '';
     return true;
   }
-}
-function jobValidation() {
+};
+
+function _jobValidation() {
   if (!(/^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/.test(userJob.value))) {
     userJob.nextElementSibling.innerHTML = '*Introduzca un puesto válido';
     return false;
@@ -129,8 +131,9 @@ function jobValidation() {
     userJob.nextElementSibling.innerHTML = '';
     return true;
   }
-}
-function emailValidation() {
+};
+
+function _emailValidation() {
   if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(userEmail.value))) {
     userEmail.nextElementSibling.innerHTML = '*Introduzca un email válido';
     return false;
@@ -138,8 +141,9 @@ function emailValidation() {
     userEmail.nextElementSibling.innerHTML = '';
     return true;
   }
-}
-function phoneValidation() {
+};
+
+function _phoneValidation() {
   if (!(/^[0-9]{9}/.test(userTel.value))) {
     userTel.nextElementSibling.innerHTML = '*El número de teléfono debe tener 9 dígitos';
     return false
@@ -150,8 +154,8 @@ function phoneValidation() {
 }
 
 function getPersData() {
-  palette.getPalette();
-  palette.getFont();
+  palettes.getPalette();
+  fonts.getFont();
   getName();
   getJob();
   avatar.getProfileImage();
@@ -226,5 +230,13 @@ function getGithub() {
   }
 }
 
-
 window.addEventListener('load', getPersData);
+
+module.exports = {
+  nameValidation: _nameValidation,
+  jobValidation: _jobValidation,
+  emailValidation: _emailValidation,
+  // phoneValidation: _phoneValidation,
+
+
+};
