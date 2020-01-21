@@ -1,31 +1,24 @@
-![Adalab](_src/assets/images/logo-adalab.png)
-![Jungle Wanderers](_src/assets/images/group-logo.png)
 # Awesome profile cards :crocodile::monkey::palm_tree:
 
-Proyecto módulo 2 de Adalab. 
-Creación de tarjetas de visita virtuales. 
+> Refactor del proyecto realizado en equipo durante el módulo 2 del bootcamp Adalab para la creación de tarjetas de visita virtuales. ([Pincha aquí para ver el repo original.](https://github.com/mariaglomana/project-promo-h-module-2-team-3-afternoon-jungle-wanderers))
 
-## Guía de inicio rápido y tecnologías usadas
-Para trabajar con este repositorio, recomendamos clonar en la misma carpeta el repositorio de Adalab Starter Kit. Para el desarrollo del proyecto hemos utilizado HTML, CSS, SCSS y JAVASCRIPT.
+
+## Tecnologías utilizadas
+Los lenguajes utilizados han sido HTML, CSS preprocesado con SASS y JAVASCRIPT NATIVO.
 
 
 ## Funcionamiento
-Con esta web puedes generar tu propia tarjeta de perfil personalizada 👩🏻, con la que podrán comunicarse contigo vía teléfono o email :e-mail:. Además, contiene enlaces directos a tus perfiles en linkedIn y en GitHub para que puedan añadirte fácilmente otros usuarios 👥.
+Con esta web puedes generar tu propia tarjeta de perfil personalizada, con la que podrán comunicarse contigo vía teléfono o email :e-mail:. Además, contiene enlaces directos a tus perfiles en linkedIn y GitHub para que puedan añadirte fácilmente otros usuarios 👥.
 
-## Pasos a seguir
+### Pasos a seguir
 
-1️. Diseña eligiendo los colores que más te gusten de la paleta.
+1️. Conviértete en diseñador eligiendo los colores que más te gusten de entre las paletas que ofrecemos y tres posibles tipografías.
 
-2️. Rellena todos los campos con tus datos personales.  
+2️. Rellena todos los campos con tus datos personales; si algún dato no es válido aparecerá un mensaje de error para que lo modifiques antes de crear la tarjeta. 
 
 3️. Prepara tu mejor foto para subirla. 
 
-4️. Comparte: Se generará automáticamente una URL con tu tarjeta, y un link para que puedas compartir tu    tarjeta personal en Twitter 
-
-
-### Versión lista para subir a producción
-
-En la carpeta **docs/** se generan los CSS y JS minimizados y sin sourcemaps listos para subir al repo y activar GitHub Pages en `master/docs`.
+4️. Comparte: Se generará automáticamente una URL con tu tarjeta, y un link para que puedas compartir tu tarjeta personal en Twitter y LinkedIn.
 
 
 ## Estructura del proyecto
@@ -38,20 +31,42 @@ La estructura de carpetas es la siguiente 📂:
    |  |- icons
    |  |- images
    |  |- js
-   |  `- scss
+          - index.js
+          
+          - components
+            - constants.js
+            - dropDownMenu.js
+            - palettes.js
+            - fonts.js
+            - form.js
+            - avatar.js
+            - reset.js
+            - createCard.js
+          
+          - services
+            - api.js
+   |  `|- scss
+          - main.scss
    |     `- core
+            - _functions.scss
+            - _mixins.scss
+            - _variables-scss
           - layout
+            - _footer.scss
+            - _form-toggle.scss
+            - _header.scss
+            - _mediaqueries.scss
           - pages
+            - _landing.scss
           - vendor
+            - _normalize.scss
    |
    `- templates
+       - index.html
+       - main.html
       `- partials
 /
-`- .git
-    docs
-    node_modules
-    public
-
+`
 ```
 
 
