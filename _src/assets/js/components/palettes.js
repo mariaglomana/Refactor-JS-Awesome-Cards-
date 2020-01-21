@@ -1,6 +1,6 @@
 'use strict';
 
-const constants = require('./00-constants');
+const constants = require('./constants');
 
 const palette1 = document.querySelector(constants.palette1);
 const palette2 = document.querySelector(constants.palette2);

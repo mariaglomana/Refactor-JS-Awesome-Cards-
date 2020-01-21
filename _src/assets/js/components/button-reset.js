@@ -1,6 +1,6 @@
 'use strict';
 
-const constants = require('./00-constants');
+const constants = require('./constants');
 
 const userName = document.querySelector(constants.userName);
 

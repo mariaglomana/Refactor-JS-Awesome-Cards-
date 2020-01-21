@@ -80,4 +80,3 @@ module.exports = {
     iconItems: '#preview_card-icons',
     iconButtons: '.item_btn',
 };
-

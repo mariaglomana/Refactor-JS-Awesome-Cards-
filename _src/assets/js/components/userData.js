@@ -1,8 +1,8 @@
 'use strict';
 
-const constants = require('./00-constants');
-const palette = require('./02-palette');
-const avatar = require('./04-get-avatar');
+const constants = require('./constants');
+const palette = require('./palettes');
+const avatar = require('./get-avatar');
 
 const userName = document.querySelector(constants.userName);
 const userJob = document.querySelector(constants.userJob);

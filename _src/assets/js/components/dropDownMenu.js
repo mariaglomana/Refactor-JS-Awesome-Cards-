@@ -1,6 +1,6 @@
 'use strict';
 
-const fetch = require('./06-fetch');
+const fetch = require('../services/fetch');
 
 
 // start page functions
