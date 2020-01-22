@@ -1,7 +1,7 @@
 "use strict";
 
-// let paletteChosen = "";
-// let fontChosen = "";
+// let chosenPalette = "";
+// let chosenFont = "";
 
 module.exports = {
   designContainer: "#designContainer",

@@ -12,7 +12,6 @@ const arrowShare = document.querySelector(constants.arrowShare);
 const design = document.querySelector(constants.design);
 const fillIn = document.querySelector(constants.fillIn);
 const share = document.querySelector(constants.share);
-const defaultImage = constants.defaultImage;
 const twitterContainer = document.querySelector(constants.twitterContainer);
 
 // start page functions
@@ -22,33 +21,37 @@ fillIn.classList.add("hidden");
 share.classList.add("hidden");
 
 function hideDesign() {
-  design.classList.toggle("hidden");
-  fillIn.classList.add("hidden");
-  share.classList.add("hidden");
-  arrowDesign.classList.toggle("rotate");
-  arrowFillIn.classList.remove("rotate");
-  arrowShare.classList.remove("rotate");
+  toggleGeneric(design, arrowDesign, fillIn, share, arrowFillIn, arrowShare);
 }
-designContainer.addEventListener("click", hideDesign);
 
 function toggleFillIn() {
-  fillIn.classList.toggle("hidden");
-  design.classList.add("hidden");
-  share.classList.add("hidden");
-  arrowDesign.classList.remove("rotate");
-  arrowFillIn.classList.toggle("rotate");
-  arrowShare.classList.remove("rotate");
+  toggleGeneric(fillIn, arrowFillIn, design, share, arrowDesign, arrowShare);
 }
-fillInContainer.addEventListener("click", toggleFillIn);
 
 function toggleShare() {
-  share.classList.toggle("hidden");
-  design.classList.add("hidden");
-  fillIn.classList.add("hidden");
-  arrowShare.classList.toggle("rotate");
-  arrowDesign.classList.remove("rotate");
-  arrowFillIn.classList.remove("rotate");
+  toggleGeneric(share, arowShare, design, fillIn, arrowDesign, arrowFillIn);
 }
+
+function toggleGeneric(
+  toggleEl1,
+  toggleEl2,
+  hiddenEl1,
+  hiddenEl2,
+  removeEl1,
+  removeEl2
+) {
+  toggleEl1.classList.toggle("hidden");
+  toggleEl2.classList.toggle("rotate");
+
+  hiddenEl1.classList.add("hidden");
+  hiddenEl2.classList.add("hidden");
+
+  removeEl1.classList.remove("rotate");
+  removeEl2.classList.remove("rotate");
+}
+
+designContainer.addEventListener("click", hideDesign);
 shareContainer.addEventListener("click", toggleShare);
 shareContainer.addEventListener("click", validation.checkFilledInputs);
+fillInContainer.addEventListener("click", toggleFillIn);
 twitterContainer.classList.add("hidden");

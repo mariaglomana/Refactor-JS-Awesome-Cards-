@@ -2,6 +2,29 @@
 
 const constants = require("./constants");
 
+const paletteConfig = {
+  palette1: {
+    colorName: "darkGreenBlue",
+    colorHead: "borderPalette1",
+    borderColor: "#a2deaf"
+  },
+  palette2: {
+    colorName: "driedBlood",
+    colorHead: "borderPalette2",
+    borderColor: "#e95626"
+  },
+  palette3: {
+    colorName: "slate",
+    colorHead: "borderPalette3",
+    borderColor: "#a0c0cf"
+  },
+  palette4: {
+    colorName: "jungleGreen",
+    colorHead: "borderPalette4",
+    borderColor: "#f15f06"
+  }
+};
+
 const palette1 = document.querySelector(constants.palette1);
 const palette2 = document.querySelector(constants.palette2);
 const palette3 = document.querySelector(constants.palette3);
@@ -10,121 +33,65 @@ const previewCardName = document.querySelector(constants.previewCardName);
 const previewCardHead = document.querySelector(constants.previewCardHead);
 const iconItems = document.querySelectorAll(constants.iconItems);
 const iconButtons = document.querySelectorAll(constants.iconButtons);
-let paletteChosen;
+let chosenPalette;
 
 //COLORS
 
-function _getPalette() {
-  if (localStorage.getItem("palette")) {
-    paletteChosen = localStorage.getItem("palette");
-    if (paletteChosen === "1") {
-      palette1.setAttribute("checked", true);
-    } else if (paletteChosen === "2") {
-      palette2.setAttribute("checked", true);
-    } else if (paletteChosen === "3") {
-      palette3.setAttribute("checked", true);
-    } else if (paletteChosen === "4") {
-      palette4.setAttribute("checked", true);
-    }
-    applyPalette();
+function _setPalette(palette) {
+  if (!palette) {
+    chosenPalette = "1";
   } else {
-    palette1.setAttribute("checked", true);
-    applyPalette();
+    chosenPalette = palette;
   }
+
+  if (chosenPalette === "1") {
+    palette1.setAttribute("checked", true);
+  } else if (chosenPalette === "2") {
+    palette2.setAttribute("checked", true);
+  } else if (chosenPalette === "3") {
+    palette3.setAttribute("checked", true);
+  } else if (chosenPalette === "4") {
+    palette4.setAttribute("checked", true);
+  }
+  applyPalette();
 }
 
 function choosePalette() {
-  paletteChosen = event.currentTarget.value;
-  localStorage.setItem("palette", paletteChosen);
+  chosenPalette = event.currentTarget.value;
+  localStorage.setItem("palette", chosenPalette);
   applyPalette();
 }
 
 function applyPalette() {
   if (palette1.checked) {
-    _applyPalette1();
+    applyGenericPalette(paletteConfig.palette1);
   } else if (palette2.checked) {
-    applyPalette2();
+    applyGenericPalette(paletteConfig.palette2);
   } else if (palette3.checked) {
-    applyPalette3();
+    applyGenericPalette(paletteConfig.palette3);
   } else if (palette4.checked) {
-    applyPalette4();
+    applyGenericPalette(paletteConfig.palette4);
   }
 }
 
-function _applyPalette1() {
-  previewCardName.classList.add("darkGreenBlue");
-  previewCardName.classList.remove("driedBlood", "slate", "jungleGreen");
-  previewCardHead.classList.add("borderPalette1");
-  previewCardHead.classList.remove(
-    "borderPalette2",
-    "borderPalette3",
-    "borderPalette4"
-  );
+function applyGenericPalette(paletteConfig) {
+  previewCardName.className = "";
+  previewCardName.classList.add(paletteConfig.colorName);
+
+  previewCardHead.className = "";
+  previewCardHead.classList.add(paletteConfig.colorHead);
+
   for (const iconItem of iconItems) {
-    iconItem.classList.add("darkGreenBlue");
-    iconItem.classList.remove("driedBlood", "slate", "jungleGreen");
+    iconItem.className = "";
+    iconItem.classList.add(paletteConfig.colorName);
   }
   for (const IconButton of iconButtons) {
-    IconButton.style.borderColor = "#a2deaf";
+    IconButton.style.borderColor = paletteConfig.borderColor;
   }
 }
 
-function applyPalette2() {
-  previewCardName.classList.add("driedBlood");
-  previewCardName.classList.remove("darkGreenBlue", "slate", "jungleGreen");
-  previewCardHead.classList.add("borderPalette2");
-  previewCardHead.classList.remove(
-    "borderPalette1",
-    "borderPalette3",
-    "borderPalette4"
-  );
-  for (const iconItem of iconItems) {
-    iconItem.classList.add("driedBlood");
-    iconItem.classList.remove("darkGreenBlue", "slate", "jungleGreen");
-  }
-  for (const IconButton of iconButtons) {
-    IconButton.style.borderColor = "#e95626";
-  }
-}
-
-function applyPalette3() {
-  previewCardName.classList.add("slate");
-  previewCardName.classList.remove(
-    "driedBlood",
-    "darkGreenBlue",
-    "jungleGreen"
-  );
-  previewCardHead.classList.add("borderPalette3");
-  previewCardHead.classList.remove(
-    "borderPalette1",
-    "borderPalette2",
-    "borderPalette4"
-  );
-  for (const iconItem of iconItems) {
-    iconItem.classList.add("slate");
-    iconItem.classList.remove("driedBlood", "darkGreenBlue", "jungleGreen");
-  }
-  for (const IconButton of iconButtons) {
-    IconButton.style.borderColor = "#a0c0cf";
-  }
-}
-
-function applyPalette4() {
-  previewCardName.classList.add("jungleGreen");
-  previewCardName.classList.remove("darkGreenBlue", "driedBlood", "slate");
-  previewCardHead.classList.add("borderPalette4");
-  previewCardHead.classList.remove(
-    "borderPalette1",
-    "borderPalette2",
-    "borderPalette3"
-  );
-  for (const iconItem of iconItems) {
-    iconItem.classList.add("jungleGreen");
-    iconItem.classList.remove("darkGreenBlue", "driedBlood", "slate");
-  }
-  for (const IconButton of iconButtons) {
-    IconButton.style.borderColor = "#f15f06";
-  }
+function _getChosenPalette() {
+  return chosenPalette;
 }
 
 palette1.addEventListener("click", choosePalette);
@@ -133,7 +100,6 @@ palette3.addEventListener("click", choosePalette);
 palette4.addEventListener("click", choosePalette);
 
 module.exports = {
-  getPalette: _getPalette,
-  applyPalette1: _applyPalette1,
-  paletteChosen: paletteChosen
+  getChosenPalette: _getChosenPalette,
+  setPalette: _setPalette
 };

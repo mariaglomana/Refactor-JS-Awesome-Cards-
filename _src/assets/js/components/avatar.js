@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-const constants = require('./constants');
+const constants = require("./constants");
 
 const fr = new FileReader();
 const uploadBtn = document.querySelector(constants.uploadBtn);
@@ -9,21 +9,19 @@ const profileImage = document.querySelector(constants.profileImage);
 const profilePreview = document.querySelector(constants.profilePreview);
 const defaultImage = constants.defaultImage;
 
-
 /**
  * Recoge el archivo añadido al campo de tipo "file"
- * y lo carga en nuestro objeto FileReader para que 
+ * y lo carga en nuestro objeto FileReader para que
  * lo convierta a algo con lo que podamos trabajar.
  * Añade un listener al FR para que ejecute una función
  * al tener los datos listos
- * @param {evento} e 
+ * @param {evento} e
  */
 function getImage(e) {
   var myFile = e.currentTarget.files[0];
-  fr.addEventListener('load', writeImage);
+  fr.addEventListener("load", writeImage);
   fr.readAsDataURL(myFile);
 }
-
 
 /**
  * Una vez tenemos los datos listos en el FR podemos
@@ -31,13 +29,12 @@ function getImage(e) {
  */
 function writeImage() {
   /* En la propiedad `result` de nuestro FR se almacena
-     * el resultado
-     */
+   * el resultado
+   */
   profileImage.style.backgroundImage = `url(${fr.result})`;
   profilePreview.style.backgroundImage = `url(${fr.result})`;
-  localStorage.setItem('image', fr.result);
+  localStorage.setItem("image", fr.result);
 }
-
 
 /**
  * Genera un click automático en nuesto campo de tipo "file"
@@ -48,26 +45,41 @@ function fakeFileClick() {
 }
 
 function _getProfileImage() {
-  if (localStorage.getItem('image')) {
-    profileImage.style.backgroundImage = `url(${localStorage.getItem('image')})`;
-    profilePreview.style.backgroundImage = `url(${localStorage.getItem('image')})`;
-  }
-  else {
+  if (localStorage.getItem("image")) {
+    profileImage.style.backgroundImage = `url(${localStorage.getItem(
+      "image"
+    )})`;
+    profilePreview.style.backgroundImage = `url(${localStorage.getItem(
+      "image"
+    )})`;
+  } else {
     profileImage.style.backgroundImage = `url(${defaultImage})`;
     profilePreview.style.backgroundImage = `url(${defaultImage})`;
   }
 }
 
+function _getImageUrl() {
+  let photoSend;
+  if (!fr.result && !localStorage.getItem("image")) {
+    photoSend = defaultImage;
+  } else if (!fr.result && localStorage.getItem("image")) {
+    photoSend = localStorage.getItem("image");
+  } else {
+    photoSend = fr.result;
+    localStorage.setItem("image", photoSend);
+  }
+  return photoSend;
+}
 
 /**
  * Añadimos los listeners necesarios:
  * - al botón visible para generar el click automático
  * - al campo oculto para cuando cambie su value
  */
-uploadBtn.addEventListener('click', fakeFileClick);
-fileField.addEventListener('change', getImage);
+uploadBtn.addEventListener("click", fakeFileClick);
+fileField.addEventListener("change", getImage);
 
 module.exports = {
   getProfileImage: _getProfileImage,
-  fr: fr,
+  getImageUrl: _getImageUrl
 };

@@ -12,6 +12,7 @@ const userEmail = document.querySelector(constants.userEmail);
 const userTel = document.querySelector(constants.userTel);
 const userLinkedin = document.querySelector(constants.userLinkedin);
 const userGithub = document.querySelector(constants.userGithub);
+
 const previewCardName = document.querySelector(constants.previewCardName);
 const previewCardJob = document.querySelector(constants.previewCardJob);
 const phoneIcon = document.querySelector(constants.phoneIcon);
@@ -112,19 +113,19 @@ userEmail.addEventListener("keyup", addEmail);
 userLinkedin.addEventListener("keyup", addLinkedin);
 userGithub.addEventListener("keyup", addGithub);
 
-function getPersData() {
+function _getPersData() {
   palettes.getPalette();
   fonts.getFont();
-  getName();
-  getJob();
+  setName();
+  setJob();
   avatar.getProfileImage();
-  getPhone();
-  getEmail();
-  getLinkedin();
-  getGithub();
+  setPhone();
+  setEmail();
+  setLinkedin();
+  setGithub();
 }
 
-function getName() {
+function setName() {
   if (localStorage.getItem("name")) {
     userName.value = localStorage.getItem("name");
     previewCardName.innerHTML = localStorage.getItem("name");
@@ -133,7 +134,7 @@ function getName() {
   }
 }
 
-function getJob() {
+function setJob() {
   if (localStorage.getItem("job")) {
     userJob.value = localStorage.getItem("job");
     previewCardJob.innerHTML = localStorage.getItem("job");
@@ -142,7 +143,7 @@ function getJob() {
   }
 }
 
-function getPhone() {
+function setPhone() {
   if (localStorage.getItem("phone")) {
     userTel.value = localStorage.getItem("phone");
     phoneIcon.href = `tel:${userTel.value}`;
@@ -152,7 +153,7 @@ function getPhone() {
   }
 }
 
-function getEmail() {
+function setEmail() {
   if (localStorage.getItem("email")) {
     userEmail.value = localStorage.getItem("email");
     emailIcon.href = `tel:${userEmail.value}`;
@@ -162,7 +163,7 @@ function getEmail() {
   }
 }
 
-function getLinkedin() {
+function setLinkedin() {
   if (localStorage.getItem("linkedin")) {
     userLinkedin.value = localStorage.getItem("linkedin");
     linkedinIcon.href = `tel:${userLinkedin.value}`;
@@ -172,7 +173,7 @@ function getLinkedin() {
   }
 }
 
-function getGithub() {
+function setGithub() {
   if (localStorage.getItem("github")) {
     userGithub.value = localStorage.getItem("github");
     githubIcon.href = `tel:${userGithub.value}`;
@@ -182,4 +183,45 @@ function getGithub() {
   }
 }
 
-window.addEventListener("load", getPersData);
+function _getName() {
+  return userName.value;
+}
+
+function _getJob() {
+  return userJob.value;
+}
+
+function _getPhone() {
+  return userTel.value;
+}
+
+function _getEmail() {
+  return userEmail.value;
+}
+
+function _getLinkedin() {
+  return userLinkedin.value;
+}
+
+function _getGithub() {
+  return userGithub.value;
+}
+
+function _getFormData() {
+  return {
+    palette: palettes.getChosenPalette(),
+    font: fonts.getChosenFont(),
+    name: _getName(),
+    job: _getJob(),
+    phone: _getPhone(),
+    email: _getEmail(),
+    linkedin: _getLinkedin(),
+    github: _getGithub(),
+    photo: avatar.getImageUrl()
+  };
+}
+
+module.exports = {
+  getFormData: _getFormData,
+  getPersData: _getPersData
+};

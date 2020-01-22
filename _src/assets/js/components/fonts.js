@@ -7,18 +7,18 @@ const font2 = document.querySelector(constants.font2);
 const font3 = document.querySelector(constants.font3);
 const previewCardName = document.querySelector(constants.previewCardName);
 const previewCardJob = document.querySelector(constants.previewCardJob);
-let fontChosen;
+let chosenFont;
 
 //FONTS
 
 function _getFont() {
   if (localStorage.getItem("font")) {
-    fontChosen = localStorage.getItem("font");
-    if (fontChosen === "1") {
+    chosenFont = localStorage.getItem("font");
+    if (chosenFont === "1") {
       font1.setAttribute("checked", true);
-    } else if (fontChosen === "2") {
+    } else if (chosenFont === "2") {
       font2.setAttribute("checked", true);
-    } else if (fontChosen === "3") {
+    } else if (chosenFont === "3") {
       font3.setAttribute("checked", true);
     }
     applyFont();
@@ -29,8 +29,8 @@ function _getFont() {
 }
 
 const chooseFont = event => {
-  fontChosen = event.currentTarget.value;
-  localStorage.setItem("font", fontChosen);
+  chosenFont = event.currentTarget.value;
+  localStorage.setItem("font", chosenFont);
   applyFont();
 };
 
@@ -57,7 +57,7 @@ const applyFont2 = () => {
   previewCardJob.classList.add("fontCherrySwashRegular");
   previewCardJob.classList.remove("fontMontserratRegular", "fontKalamRegular");
 };
-
+setLinkedin;
 const applyFont3 = () => {
   previewCardName.classList.add("fontKalamBold");
   previewCardName.classList.remove("fontMontserratBold", "fontCherrySwashBold");
@@ -68,6 +68,10 @@ const applyFont3 = () => {
   );
 };
 
+function _getChosenFont() {
+  return chosenFont;
+}
+
 font1.addEventListener("click", chooseFont);
 font2.addEventListener("click", chooseFont);
 font3.addEventListener("click", chooseFont);
@@ -75,5 +79,5 @@ font3.addEventListener("click", chooseFont);
 module.exports = {
   getFont: _getFont,
   applyFont1: _applyFont1,
-  fontChosen: fontChosen
+  getChosenFont: _getChosenFont
 };

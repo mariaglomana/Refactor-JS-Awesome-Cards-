@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
-const constants = require('./constants');
-const palettes = require('./palettes');
-const fonts = require('./fonts');
+const constants = require("./constants");
+const palettes = require("./palettes");
+const fonts = require("./fonts");
 
 const palette1 = document.querySelector(constants.palette1);
 const font1 = document.querySelector(constants.font1);
@@ -28,19 +28,19 @@ const defaultImage = constants.defaultImage;
 const reseterButton = document.querySelector(constants.reseterButton);
 
 const resetLocalStorage = () => {
-  localStorage.clear('palette');
-  localStorage.clear('font');
-  localStorage.clear('name');
-  localStorage.clear('job');
-  localStorage.clear('image');
-  localStorage.clear('phone');
-  localStorage.clear('email');
-  localStorage.clear('linkedin');
-  localStorage.clear('github');
+  localStorage.clear("palette");
+  localStorage.clear("font");
+  localStorage.clear("name");
+  localStorage.clear("job");
+  localStorage.clear("image");
+  localStorage.clear("phone");
+  localStorage.clear("email");
+  localStorage.clear("linkedin");
+  localStorage.clear("github");
 };
 
 const resetColorPalette = () => {
-  palettes.applyPalette1();
+  palettes.setPalette();
   palette1.checked = true;
 };
 const resetFont = () => {
@@ -49,13 +49,13 @@ const resetFont = () => {
 };
 
 const resetName = () => {
-  previewCardName.innerHTML = 'Nombre Apellido';
-  userName.value = '';
+  previewCardName.innerHTML = "Nombre Apellido";
+  userName.value = "";
 };
 
 const resetJob = () => {
-  previewCardJob.innerHTML = 'Front-end developer';
-  userJob.value = '';
+  previewCardJob.innerHTML = "Front-end developer";
+  userJob.value = "";
 };
 
 const resetImage = () => {
@@ -64,27 +64,27 @@ const resetImage = () => {
 };
 
 const resetPhone = () => {
-  phoneIcon.href = '';
-  userTel.value = '';
-  phoneItem.classList.add('opacity');
+  phoneIcon.href = "";
+  userTel.value = "";
+  phoneItem.classList.add("opacity");
 };
 
 const resetEmail = () => {
-  emailIcon.href = '';
-  userEmail.value = '';
-  emailItem.classList.add('opacity');
+  emailIcon.href = "";
+  userEmail.value = "";
+  emailItem.classList.add("opacity");
 };
 
 const resetLinkedin = () => {
-  linkedinIcon.href = '';
-  userLinkedin.value = '';
-  linkedinItem.classList.add('opacity');
+  linkedinIcon.href = "";
+  userLinkedin.value = "";
+  linkedinItem.classList.add("opacity");
 };
 
 const resetGithub = () => {
-  githubIcon.href = '';
-  userGithub.value = '';
-  githubItem.classList.add('opacity');
+  githubIcon.href = "";
+  userGithub.value = "";
+  githubItem.classList.add("opacity");
 };
 
 const resetCardData = () => {
@@ -100,4 +100,4 @@ const resetCardData = () => {
   resetGithub();
 };
 
-reseterButton.addEventListener('click', resetCardData);
+reseterButton.addEventListener("click", resetCardData);
