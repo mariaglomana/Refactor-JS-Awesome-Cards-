@@ -11,31 +11,52 @@ const userGithub = document.querySelector(constants.userGithub);
 const errorMessage = document.querySelector(constants.errorMessage);
 const createCardButton = document.querySelector(constants.createCardButton);
 
-function _nameValidation() {
+// puesto en componente form.js
+const textConfig = {
+  name: "userName",
+  job: "userJob"
+};
+
+//Revisar error: no funciona validación genérica
+function _genericTextValidation(textConfig) {
   if (
     !/^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/.test(
-      userName.value
+      textConfig.value
     )
   ) {
-    userName.nextElementSibling.innerHTML = "*Introduzca un nombre válido";
+    textConfig.nextElementSibling.innerHTML = "* Revise este campo";
     return false;
   } else {
-    userName.nextElementSibling.innerHTML = "";
+    textConfig.nextElementSibling.innerHTML = "";
     return true;
   }
 }
 
-function _jobValidation() {
-  if (
-    !/^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/.test(userJob.value)
-  ) {
-    userJob.nextElementSibling.innerHTML = "*Introduzca un puesto válido";
-    return false;
-  } else {
-    userJob.nextElementSibling.innerHTML = "";
-    return true;
-  }
-}
+// function _nameValidation() {
+//   if (
+//     !/^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/.test(
+//       userName.value
+//     )
+//   ) {
+//     userName.nextElementSibling.innerHTML = "*Introduzca un nombre válido";
+//     return false;
+//   } else {
+//     userName.nextElementSibling.innerHTML = "";
+//     return true;
+//   }
+// }
+
+// function _jobValidation() {
+//   if (
+//     !/^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/.test(userJob.value)
+//   ) {
+//     userJob.nextElementSibling.innerHTML = "*Introduzca un puesto válido";
+//     return false;
+//   } else {
+//     userJob.nextElementSibling.innerHTML = "";
+//     return true;
+//   }
+// }
 
 function _emailValidation() {
   if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(userEmail.value)) {
@@ -60,8 +81,9 @@ function _phoneValidation() {
 
 function _checkFilledInputs() {
   if (
-    _nameValidation() === false ||
-    _jobValidation() === false ||
+    !_genericTextValidation ||
+    // _nameValidation() === false ||
+    // _jobValidation() === false ||
     _emailValidation() === false ||
     userLinkedin.value === "" ||
     userGithub.value === ""
@@ -75,8 +97,9 @@ function _checkFilledInputs() {
 }
 
 module.exports = {
-  nameValidation: _nameValidation,
-  jobValidation: _jobValidation,
+  genericTextValidation: _genericTextValidation,
+  // nameValidation: _nameValidation,
+  // jobValidation: _jobValidation,
   emailValidation: _emailValidation,
   phoneValidation: _phoneValidation,
   checkFilledInputs: _checkFilledInputs

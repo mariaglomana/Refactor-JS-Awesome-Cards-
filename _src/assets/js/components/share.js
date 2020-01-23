@@ -2,7 +2,6 @@
 
 const constants = require("./constants");
 const form = require("./form");
-
 const api = require("../services/api");
 
 const createCardButton = document.querySelector(constants.createCardButton);

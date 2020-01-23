@@ -2,29 +2,6 @@
 
 const constants = require("./constants");
 
-const paletteConfig = {
-  palette1: {
-    colorName: "darkGreenBlue",
-    colorHead: "borderPalette1",
-    borderColor: "#a2deaf"
-  },
-  palette2: {
-    colorName: "driedBlood",
-    colorHead: "borderPalette2",
-    borderColor: "#e95626"
-  },
-  palette3: {
-    colorName: "slate",
-    colorHead: "borderPalette3",
-    borderColor: "#a0c0cf"
-  },
-  palette4: {
-    colorName: "jungleGreen",
-    colorHead: "borderPalette4",
-    borderColor: "#f15f06"
-  }
-};
-
 const palette1 = document.querySelector(constants.palette1);
 const palette2 = document.querySelector(constants.palette2);
 const palette3 = document.querySelector(constants.palette3);
@@ -34,6 +11,66 @@ const previewCardHead = document.querySelector(constants.previewCardHead);
 const iconItems = document.querySelectorAll(constants.iconItems);
 const iconButtons = document.querySelectorAll(constants.iconButtons);
 let chosenPalette;
+
+//quizá los oldColorBorder no son necesarios...
+const paletteConfig = {
+  palette1: {
+    colorName: "darkGreenBlue",
+    colorHead: "borderPalette1",
+    borderColor: "#a2deaf",
+    oldColorName1: "slate",
+    oldColorName2: "jungleGreen",
+    oldColorName3: "driedBlood",
+    oldColorHead1: "borderPalette3",
+    oldColorHead2: "borderPalette4",
+    oldColorHead3: "borderPalette2",
+    oldColorBorder1: "#a0c0cf",
+    oldColorBorder2: "#f15f06",
+    oldColorBorder3: "#e95626"
+  },
+  palette2: {
+    colorName: "driedBlood",
+    colorHead: "borderPalette2",
+    borderColor: "#e95626",
+    oldColorName1: "slate",
+    oldColorName2: "jungleGreen",
+    oldColorName3: "darkGreenBlue",
+    oldColorHead1: "borderPalette3",
+    oldColorHead2: "borderPalette4",
+    oldColorHead3: "borderPalette1",
+    oldColorBorder1: "#a0c0cf",
+    oldColorBorder2: "#f15f06",
+    oldColorBorder3: "#a2deaf"
+  },
+  palette3: {
+    colorName: "slate",
+    colorHead: "borderPalette3",
+    borderColor: "#a0c0cf",
+    oldColorName1: "driedBlood",
+    oldColorName2: "jungleGreen",
+    oldColorName3: "darkGreenBlue",
+    oldColorHead1: "borderPalette2",
+    oldColorHead2: "borderPalette4",
+    oldColorHead3: "borderPalette1",
+    oldColorBorder1: "#e95626",
+    oldColorBorder2: "#f15f06",
+    oldColorBorder3: "#a2deaf"
+  },
+  palette4: {
+    colorName: "jungleGreen",
+    colorHead: "borderPalette4",
+    borderColor: "#f15f06",
+    oldColorName1: "driedBlood",
+    oldColorName2: "slate",
+    oldColorName3: "darkGreenBlue",
+    oldColorHead1: "borderPalette2",
+    oldColorHead2: "borderPalette3",
+    oldColorHead3: "borderPalette1",
+    oldColorBorder1: "#e95626",
+    oldColorBorder2: "#a0c0cf",
+    oldColorBorder3: "#a2deaf"
+  }
+};
 
 //COLORS
 
@@ -74,15 +111,29 @@ function applyPalette() {
   }
 }
 
+//Revisar: al quitar los estilos anteriores con className=""
+//tbn se borran los estilos de fuentes y viceversa.
 function applyGenericPalette(paletteConfig) {
-  previewCardName.className = "";
+  previewCardName.classList.remove(
+    paletteConfig.oldColorName1,
+    paletteConfig.oldColorName2,
+    paletteConfig.oldColorName3
+  );
   previewCardName.classList.add(paletteConfig.colorName);
 
-  previewCardHead.className = "";
+  previewCardHead.classList.remove(
+    paletteConfig.oldColorHead1,
+    paletteConfig.oldColorHead2,
+    paletteConfig.oldColorHead3
+  );
   previewCardHead.classList.add(paletteConfig.colorHead);
 
   for (const iconItem of iconItems) {
-    iconItem.className = "";
+    iconItem.classList.remove(
+      paletteConfig.oldColorName1,
+      paletteConfig.oldColorName2,
+      paletteConfig.oldColorName3
+    );
     iconItem.classList.add(paletteConfig.colorName);
   }
   for (const IconButton of iconButtons) {

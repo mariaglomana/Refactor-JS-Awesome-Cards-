@@ -32,6 +32,7 @@ module.exports = {
   twitterBtn: "#twitterBtn",
   twitterMessage: "#twitterMessage",
   linkedInBtn: "#linkedInBtn",
+  previewCard: ".preview_card",
   previewCardHead: ".preview_card-head",
   previewCardName: ".preview_card-name",
   previewCardJob: ".preview_card-job",

@@ -44,14 +44,10 @@ function fakeFileClick() {
   fileField.click();
 }
 
-function _getProfileImage() {
-  if (localStorage.getItem("image")) {
-    profileImage.style.backgroundImage = `url(${localStorage.getItem(
-      "image"
-    )})`;
-    profilePreview.style.backgroundImage = `url(${localStorage.getItem(
-      "image"
-    )})`;
+function _setImage(image) {
+  if (image) {
+    profileImage.style.backgroundImage = `url(${image})`;
+    profilePreview.style.backgroundImage = `url(${image})`;
   } else {
     profileImage.style.backgroundImage = `url(${defaultImage})`;
     profilePreview.style.backgroundImage = `url(${defaultImage})`;
@@ -80,6 +76,6 @@ uploadBtn.addEventListener("click", fakeFileClick);
 fileField.addEventListener("change", getImage);
 
 module.exports = {
-  getProfileImage: _getProfileImage,
+  setImage: _setImage,
   getImageUrl: _getImageUrl
 };

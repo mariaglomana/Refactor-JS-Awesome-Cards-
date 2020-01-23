@@ -2,7 +2,7 @@
 
 const storage = require("./components/storage");
 const constants = require("./components/constants");
-const dropDownMenu = require("./components/dropDownMenu");
+const toggle = require("./components/toggle");
 const palettes = require("./components/palettes");
 const reset = require("./components/reset");
 const form = require("./components/form");
@@ -12,10 +12,15 @@ const share = require("./components/share");
 const avatar = require("./components/avatar");
 
 window.addEventListener("load", () => {
-  // Extraer información del local storage
   const localStorage = storage.getLocalStorage();
 
-  // Inicializar los valores de dichos componentes con lo que haya en localstorage
   palettes.setPalette(localStorage.palette);
-  // TODO - setear todos los valores iniciales de los compontes al igual que con la paleta
+  fonts.setFont(localStorage.font);
+  form.setName(localStorage.name);
+  form.setJob(localStorage.job);
+  form.setPhone(localStorage.phone);
+  form.setEmail(localStorage.email);
+  form.setLinkedin(localStorage.linkedin);
+  form.setGithub(localStorage.github);
+  avatar.setImage(localStorage.avatar);
 });

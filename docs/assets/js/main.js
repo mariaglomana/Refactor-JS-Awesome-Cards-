@@ -154,7 +154,7 @@ function applyPalette4() {
       e.classList.remove("darkGreenBlue", "driedBlood", "slate");
   for (const e of iconButtons) e.style.borderColor = "#f15f06";
 }
-function getFont() {
+function setFont() {
   localStorage.getItem("font")
     ? ("1" === (chosenFont = localStorage.getItem("font"))
         ? font1.setAttribute("checked", !0)
@@ -300,10 +300,10 @@ function phoneValidation() {
 }
 function getPersData() {
   getPalette(),
-    getFont(),
+    setFont(),
     setName(),
     setJob(),
-    getProfileImage(),
+    setImage(),
     setPhone(),
     setEmail(),
     setLinkedin(),
@@ -321,7 +321,7 @@ function setJob() {
       (previewCardJob.innerHTML = localStorage.getItem("job")))
     : (userJob.value = "");
 }
-function getProfileImage() {
+function setImage() {
   localStorage.getItem("image")
     ? ((profileImage.style.backgroundImage = `url(${localStorage.getItem(
         "image"
