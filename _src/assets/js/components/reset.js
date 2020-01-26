@@ -13,7 +13,7 @@ const previewCardJob = document.querySelector(constants.previewCardJob);
 const profileImage = document.querySelector(constants.profileImage);
 const profilePreview = document.querySelector(constants.profilePreview);
 const phoneIcon = document.querySelector(constants.phoneIcon);
-const userTel = document.querySelector(constants.userTel);
+const userPhone = document.querySelector(constants.userPhone);
 const phoneItem = document.querySelector(constants.phoneItem);
 const emailIcon = document.querySelector(constants.emailIcon);
 const userEmail = document.querySelector(constants.userEmail);
@@ -65,7 +65,7 @@ const resetImage = () => {
 
 const resetPhone = () => {
   phoneIcon.href = "";
-  userTel.value = "";
+  userPhone.value = "";
   phoneItem.classList.add("opacity");
 };
 

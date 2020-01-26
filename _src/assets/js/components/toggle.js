@@ -3,6 +3,12 @@
 const constants = require("./constants");
 const validation = require("./validation");
 
+const userName = document.querySelector(constants.userName);
+const userJob = document.querySelector(constants.userJob);
+const userEmail = document.querySelector(constants.userEmail);
+const userLinkedin = document.querySelector(constants.userLinkedin);
+const userGithub = document.querySelector(constants.userGithub);
+
 const designContainer = document.querySelector(constants.designContainer);
 const fillInContainer = document.querySelector(constants.fillInContainer);
 const shareContainer = document.querySelector(constants.shareContainer);
@@ -12,15 +18,13 @@ const arrowShare = document.querySelector(constants.arrowShare);
 const design = document.querySelector(constants.design);
 const fillIn = document.querySelector(constants.fillIn);
 const share = document.querySelector(constants.share);
-const twitterContainer = document.querySelector(constants.twitterContainer);
 
 // start page functions
-
 arrowDesign.classList.add("rotate");
 fillIn.classList.add("hidden");
 share.classList.add("hidden");
 
-function hideDesign() {
+function toggleDesign() {
   toggleGeneric(design, arrowDesign, fillIn, share, arrowFillIn, arrowShare);
 }
 
@@ -29,7 +33,8 @@ function toggleFillIn() {
 }
 
 function toggleShare() {
-  toggleGeneric(share, arowShare, design, fillIn, arrowDesign, arrowFillIn);
+  toggleGeneric(share, arrowShare, design, fillIn, arrowDesign, arrowFillIn);
+  validation.checkFilledInputs(userName, userJob, userEmail, userLinkedin, userGithub);
 }
 
 function toggleGeneric(
@@ -50,8 +55,6 @@ function toggleGeneric(
   removeEl2.classList.remove("rotate");
 }
 
-designContainer.addEventListener("click", hideDesign);
+designContainer.addEventListener("click", toggleDesign);
 shareContainer.addEventListener("click", toggleShare);
-shareContainer.addEventListener("click", validation.checkFilledInputs);
 fillInContainer.addEventListener("click", toggleFillIn);
-twitterContainer.classList.add("hidden");

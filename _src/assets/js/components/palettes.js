@@ -24,9 +24,6 @@ const paletteConfig = {
     oldColorHead1: "borderPalette3",
     oldColorHead2: "borderPalette4",
     oldColorHead3: "borderPalette2",
-    oldColorBorder1: "#a0c0cf",
-    oldColorBorder2: "#f15f06",
-    oldColorBorder3: "#e95626"
   },
   palette2: {
     colorName: "driedBlood",
@@ -38,9 +35,6 @@ const paletteConfig = {
     oldColorHead1: "borderPalette3",
     oldColorHead2: "borderPalette4",
     oldColorHead3: "borderPalette1",
-    oldColorBorder1: "#a0c0cf",
-    oldColorBorder2: "#f15f06",
-    oldColorBorder3: "#a2deaf"
   },
   palette3: {
     colorName: "slate",
@@ -52,9 +46,6 @@ const paletteConfig = {
     oldColorHead1: "borderPalette2",
     oldColorHead2: "borderPalette4",
     oldColorHead3: "borderPalette1",
-    oldColorBorder1: "#e95626",
-    oldColorBorder2: "#f15f06",
-    oldColorBorder3: "#a2deaf"
   },
   palette4: {
     colorName: "jungleGreen",
@@ -66,9 +57,6 @@ const paletteConfig = {
     oldColorHead1: "borderPalette2",
     oldColorHead2: "borderPalette3",
     oldColorHead3: "borderPalette1",
-    oldColorBorder1: "#e95626",
-    oldColorBorder2: "#a0c0cf",
-    oldColorBorder3: "#a2deaf"
   }
 };
 
@@ -111,8 +99,6 @@ function applyPalette() {
   }
 }
 
-//Revisar: al quitar los estilos anteriores con className=""
-//tbn se borran los estilos de fuentes y viceversa.
 function applyGenericPalette(paletteConfig) {
   previewCardName.classList.remove(
     paletteConfig.oldColorName1,

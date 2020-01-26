@@ -2,104 +2,80 @@
 
 const constants = require("./constants");
 
-const userName = document.querySelector(constants.userName);
-const userJob = document.querySelector(constants.userJob);
-const userEmail = document.querySelector(constants.userEmail);
-const userTel = document.querySelector(constants.userTel);
-const userLinkedin = document.querySelector(constants.userLinkedin);
-const userGithub = document.querySelector(constants.userGithub);
 const errorMessage = document.querySelector(constants.errorMessage);
 const createCardButton = document.querySelector(constants.createCardButton);
 
-// puesto en componente form.js
-const textConfig = {
-  name: "userName",
-  job: "userJob"
-};
+function isValidString (value) {
+  return  /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/.test(value);
+}
 
-//Revisar error: no funciona validación genérica
-function _genericTextValidation(textConfig) {
-  if (
-    !/^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/.test(
-      textConfig.value
-    )
-  ) {
-    textConfig.nextElementSibling.innerHTML = "* Revise este campo";
-    return false;
-  } else {
-    textConfig.nextElementSibling.innerHTML = "";
+function isEmailValid (value) {
+  return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value);
+}
+
+function isPhoneValid (value) {
+  return /^[0-9]{9}/.test(value);
+}
+
+function isEmptyString (value) {
+  return value === "";
+}
+function isNotEmptyString (value) {
+  return !isEmptyString(value);
+}
+
+//Revisar: añadir parámetro para personalizar mensaje error
+function _genericTextValidation(element) {
+  if (isValidString(element.value)) {
+    element.nextElementSibling.innerHTML = "";
     return true;
+  } else {
+    element.nextElementSibling.innerHTML = "* Revise este campo";
+    return false;
+
   }
 }
 
-// function _nameValidation() {
-//   if (
-//     !/^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/.test(
-//       userName.value
-//     )
-//   ) {
-//     userName.nextElementSibling.innerHTML = "*Introduzca un nombre válido";
-//     return false;
-//   } else {
-//     userName.nextElementSibling.innerHTML = "";
-//     return true;
-//   }
-// }
-
-// function _jobValidation() {
-//   if (
-//     !/^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/.test(userJob.value)
-//   ) {
-//     userJob.nextElementSibling.innerHTML = "*Introduzca un puesto válido";
-//     return false;
-//   } else {
-//     userJob.nextElementSibling.innerHTML = "";
-//     return true;
-//   }
-// }
-
-function _emailValidation() {
-  if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(userEmail.value)) {
-    userEmail.nextElementSibling.innerHTML = "*Introduzca un email válido";
-    return false;
-  } else {
-    userEmail.nextElementSibling.innerHTML = "";
+function _emailValidation(element) {
+  if (isEmailValid(element.value)) {
+    element.nextElementSibling.innerHTML = "";
     return true;
+  } else {
+    element.nextElementSibling.innerHTML = "*Introduzca un email válido";
+    return false;
   }
 }
 
-function _phoneValidation() {
-  if (!/^[0-9]{9}/.test(userTel.value)) {
-    userTel.nextElementSibling.innerHTML =
-      "*El número de teléfono debe tener 9 dígitos";
-    return false;
-  } else {
-    userTel.nextElementSibling.innerHTML = "";
+function _phoneValidation(element) {
+  if (isPhoneValid(element.value) || isEmptyString(element.value)) {
+    element.nextElementSibling.innerHTML = "";
     return true;
+  } else {
+    element.nextElementSibling.innerHTML = "*El número de teléfono debe tener 9 dígitos";
+    return false;
   }
 }
 
-function _checkFilledInputs() {
-  if (
-    !_genericTextValidation ||
-    // _nameValidation() === false ||
-    // _jobValidation() === false ||
-    _emailValidation() === false ||
-    userLinkedin.value === "" ||
-    userGithub.value === ""
-  ) {
-    createCardButton.disabled = true;
-    errorMessage.classList.remove("hidden");
-  } else {
+function isFormValid(name, job, email, linkedin, github) {
+  return  _genericTextValidation(name) &&
+    _genericTextValidation(job) &&
+    _emailValidation(email) &&
+    isNotEmptyString(linkedin.value) &&
+    isNotEmptyString(github.value);
+}
+
+function _checkFilledInputs(name, job, email, linkedin, github) {
+  if (isFormValid(name, job, email, linkedin, github)) {
     createCardButton.disabled = false;
     errorMessage.classList.add("hidden");
+  } else {
+    createCardButton.disabled = true;
+    errorMessage.classList.remove("hidden");
   }
 }
 
 module.exports = {
   genericTextValidation: _genericTextValidation,
-  // nameValidation: _nameValidation,
-  // jobValidation: _jobValidation,
   emailValidation: _emailValidation,
   phoneValidation: _phoneValidation,
   checkFilledInputs: _checkFilledInputs

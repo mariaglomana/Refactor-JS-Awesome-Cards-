@@ -23,7 +23,7 @@ module.exports = {
   userName: "#name",
   userJob: "#job-title",
   userEmail: "#email",
-  userTel: "#tel",
+  userPhone: "#tel",
   userLinkedin: "#linkedin",
   userGithub: "#github",
   createCardButton: "#createCardButton",

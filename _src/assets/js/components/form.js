@@ -9,7 +9,7 @@ const validation = require("./validation");
 const userName = document.querySelector(constants.userName);
 const userJob = document.querySelector(constants.userJob);
 const userEmail = document.querySelector(constants.userEmail);
-const userTel = document.querySelector(constants.userTel);
+const userPhone = document.querySelector(constants.userPhone);
 const userLinkedin = document.querySelector(constants.userLinkedin);
 const userGithub = document.querySelector(constants.userGithub);
 
@@ -24,15 +24,12 @@ const emailItem = document.querySelector(constants.emailItem);
 const linkedinItem = document.querySelector(constants.linkedinItem);
 const githubItem = document.querySelector(constants.githubItem);
 
-const textConfig = {
-  name: "userName",
-  job: "userJob"
-};
+
 
 //INPUTS
 function addName() {
   if (userName.value !== "") {
-    const valName = validation.genericTextValidation(textConfig.name);
+    const valName = validation.genericTextValidation(userName);
     if (valName) {
       previewCardName.innerHTML = userName.value;
       localStorage.setItem("name", userName.value);
@@ -45,10 +42,10 @@ function addName() {
 
 function addJob() {
   if (userJob.value !== "") {
-    const valJob = validation.genericTextValidation(textConfig.job);
+    previewCardJob.innerHTML = userJob.value;
+    const valJob = validation.genericTextValidation(userJob);
     // validation.jobValidation();
     if (valJob) {
-      previewCardJob.innerHTML = userJob.value;
       localStorage.setItem("job", userJob.value);
     }
   } else {
@@ -58,13 +55,15 @@ function addJob() {
 }
 
 function addPhone() {
-  if (userTel.value !== "") {
-    const validPhone = validation.phoneValidation();
-    if (validPhone) {
-      phoneIcon.href = `tel:${userTel.value}`;
-      phoneItem.classList.remove("opacity");
-      localStorage.setItem("phone", userTel.value);
-    }
+  const validPhone = validation.phoneValidation(userPhone);
+  if (validPhone) {
+    localStorage.setItem("phone", userPhone.value);
+  }
+
+  if (userPhone.value !== "") {
+    phoneIcon.href = `tel:${userPhone.value}`;
+    phoneItem.classList.remove("opacity");
+    
   } else {
     phoneItem.classList.add("opacity");
     localStorage.removeItem("phone");
@@ -73,10 +72,10 @@ function addPhone() {
 
 function addEmail() {
   if (userEmail.value !== "") {
-    const validEmail = validation.emailValidation();
+    emailIcon.href = `mailto: ${userEmail.value}`;
+    emailItem.classList.remove("opacity");
+    const validEmail = validation.emailValidation(userEmail);
     if (validEmail) {
-      emailIcon.href = `mailto: ${userEmail.value}`;
-      emailItem.classList.remove("opacity");
       localStorage.setItem("email", userEmail.value);
     }
   } else {
@@ -109,7 +108,7 @@ function addGithub() {
 
 userName.addEventListener("keyup", addName);
 userJob.addEventListener("keyup", addJob);
-userTel.addEventListener("keyup", addPhone);
+userPhone.addEventListener("keyup", addPhone);
 userEmail.addEventListener("keyup", addEmail);
 userLinkedin.addEventListener("keyup", addLinkedin);
 userGithub.addEventListener("keyup", addGithub);
@@ -134,10 +133,10 @@ function _setJob(job) {
 
 function _setPhone(phone) {
   if (!phone) {
-    userTel.value = "";
+    userPhone.value = "";
   } else {
-    userTel.value = phone;
-    phoneIcon.href = `tel:${userTel.value}`;
+    userPhone.value = phone;
+    phoneIcon.href = `tel:${userPhone.value}`;
     phoneItem.classList.remove("opacity");
   }
 }
@@ -181,7 +180,7 @@ function _getJob() {
 }
 
 function _getPhone() {
-  return userTel.value;
+  return userPhone.value;
 }
 
 function _getEmail() {
