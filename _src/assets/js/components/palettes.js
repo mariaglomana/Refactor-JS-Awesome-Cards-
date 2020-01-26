@@ -12,7 +12,6 @@ const iconItems = document.querySelectorAll(constants.iconItems);
 const iconButtons = document.querySelectorAll(constants.iconButtons);
 let chosenPalette;
 
-//quizá los oldColorBorder no son necesarios...
 const paletteConfig = {
   palette1: {
     colorName: "darkGreenBlue",
@@ -23,7 +22,7 @@ const paletteConfig = {
     oldColorName3: "driedBlood",
     oldColorHead1: "borderPalette3",
     oldColorHead2: "borderPalette4",
-    oldColorHead3: "borderPalette2",
+    oldColorHead3: "borderPalette2"
   },
   palette2: {
     colorName: "driedBlood",
@@ -34,7 +33,7 @@ const paletteConfig = {
     oldColorName3: "darkGreenBlue",
     oldColorHead1: "borderPalette3",
     oldColorHead2: "borderPalette4",
-    oldColorHead3: "borderPalette1",
+    oldColorHead3: "borderPalette1"
   },
   palette3: {
     colorName: "slate",
@@ -45,7 +44,7 @@ const paletteConfig = {
     oldColorName3: "darkGreenBlue",
     oldColorHead1: "borderPalette2",
     oldColorHead2: "borderPalette4",
-    oldColorHead3: "borderPalette1",
+    oldColorHead3: "borderPalette1"
   },
   palette4: {
     colorName: "jungleGreen",
@@ -56,7 +55,7 @@ const paletteConfig = {
     oldColorName3: "darkGreenBlue",
     oldColorHead1: "borderPalette2",
     oldColorHead2: "borderPalette3",
-    oldColorHead3: "borderPalette1",
+    oldColorHead3: "borderPalette1"
   }
 };
 
