@@ -3,8 +3,8 @@
 const constants = require("./constants");
 const palettes = require("./palettes");
 const fonts = require("./fonts");
-const avatar = require("./avatar");
 const validation = require("./validation");
+const imageLoader = require("./imageLoader");
 
 const userName = document.querySelector(constants.userName);
 const userJob = document.querySelector(constants.userJob);
@@ -12,6 +12,8 @@ const userEmail = document.querySelector(constants.userEmail);
 const userPhone = document.querySelector(constants.userPhone);
 const userLinkedin = document.querySelector(constants.userLinkedin);
 const userGithub = document.querySelector(constants.userGithub);
+const uploadBtn = document.querySelector(constants.uploadBtn);
+const fileField = document.querySelector(constants.fileField);
 
 const previewCardName = document.querySelector(constants.previewCardName);
 const previewCardJob = document.querySelector(constants.previewCardJob);
@@ -23,8 +25,6 @@ const phoneItem = document.querySelector(constants.phoneItem);
 const emailItem = document.querySelector(constants.emailItem);
 const linkedinItem = document.querySelector(constants.linkedinItem);
 const githubItem = document.querySelector(constants.githubItem);
-
-
 
 //INPUTS
 function addName() {
@@ -63,7 +63,6 @@ function addPhone() {
   if (userPhone.value !== "") {
     phoneIcon.href = `tel:${userPhone.value}`;
     phoneItem.classList.remove("opacity");
-    
   } else {
     phoneItem.classList.add("opacity");
     localStorage.removeItem("phone");
@@ -106,69 +105,32 @@ function addGithub() {
   }
 }
 
-userName.addEventListener("keyup", addName);
-userJob.addEventListener("keyup", addJob);
-userPhone.addEventListener("keyup", addPhone);
-userEmail.addEventListener("keyup", addEmail);
-userLinkedin.addEventListener("keyup", addLinkedin);
-userGithub.addEventListener("keyup", addGithub);
-
 function _setName(name) {
-  if (!name) {
-    userName.value = "";
-  } else {
-    userName.value = name;
-    previewCardName.innerHTML = name;
-  }
+  userName.value = name;
 }
 
 function _setJob(job) {
-  if (!job) {
-    userJob.value = "";
-  } else {
-    userJob.value = job;
-    previewCardJob.innerHTML = job;
-  }
+  userJob.value = job;
 }
 
 function _setPhone(phone) {
-  if (!phone) {
-    userPhone.value = "";
-  } else {
-    userPhone.value = phone;
-    phoneIcon.href = `tel:${userPhone.value}`;
-    phoneItem.classList.remove("opacity");
-  }
+  userPhone.value = phone;
+}
+
+function _setImage(image) {
+  imageLoader.setImage(image);
 }
 
 function _setEmail(email) {
-  if (!email) {
-    userEmail.value = "";
-  } else {
-    userEmail.value = email;
-    emailIcon.href = `tel:${userEmail.value}`;
-    emailItem.classList.remove("opacity");
-  }
+  userEmail.value = email;
 }
 
 function _setLinkedin(linkedin) {
-  if (!linkedin) {
-    userLinkedin.value = "";
-  } else {
-    userLinkedin.value = linkedin;
-    linkedinIcon.href = `tel:${userLinkedin.value}`;
-    linkedinItem.classList.remove("opacity");
-  }
+  userLinkedin.value = linkedin;
 }
 
 function _setGithub(github) {
-  if (!github) {
-    userGithub.value = "";
-  } else {
-    userGithub.value = github;
-    githubIcon.href = `tel:${userGithub.value}`;
-    githubItem.classList.remove("opacity");
-  }
+  userGithub.value = github;
 }
 
 function _getName() {
@@ -205,9 +167,28 @@ function _getFormData() {
     email: _getEmail(),
     linkedin: _getLinkedin(),
     github: _getGithub(),
-    photo: avatar.getImageUrl()
+    photo: imageLoader.getImageUrl()
   };
 }
+
+const _resetFormData = () => {
+  _setName();
+  _setJob();
+  _setPhone();
+  _setEmail();
+  _setLinkedin();
+  _setGithub();
+  imageLoader.resetImage();
+};
+
+userName.addEventListener("keyup", addName);
+userJob.addEventListener("keyup", addJob);
+userPhone.addEventListener("keyup", addPhone);
+userEmail.addEventListener("keyup", addEmail);
+userLinkedin.addEventListener("keyup", addLinkedin);
+userGithub.addEventListener("keyup", addGithub);
+uploadBtn.addEventListener("click", imageLoader.fakeFileClick);
+fileField.addEventListener("change", imageLoader.onAddImageForm);
 
 module.exports = {
   getFormData: _getFormData,
@@ -216,5 +197,7 @@ module.exports = {
   setPhone: _setPhone,
   setEmail: _setEmail,
   setLinkedin: _setLinkedin,
-  setGithub: _setGithub
+  setGithub: _setGithub,
+  setImage: _setImage,
+  resetFormData: _resetFormData
 };

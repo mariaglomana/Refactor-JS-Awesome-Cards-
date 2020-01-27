@@ -323,14 +323,14 @@ function setJob() {
 }
 function setImage() {
   localStorage.getItem("image")
-    ? ((profileImage.style.backgroundImage = `url(${localStorage.getItem(
+    ? ((imagePreview.style.backgroundImage = `url(${localStorage.getItem(
         "image"
       )})`),
-      (profilePreview.style.backgroundImage = `url(${localStorage.getItem(
+      (imageForm.style.backgroundImage = `url(${localStorage.getItem(
         "image"
       )})`))
-    : ((profileImage.style.backgroundImage = `url(${defaultImage})`),
-      (profilePreview.style.backgroundImage = `url(${defaultImage})`));
+    : ((imagePreview.style.backgroundImage = `url(${defaultImage})`),
+      (imageForm.style.backgroundImage = `url(${defaultImage})`));
 }
 function setPhone() {
   localStorage.getItem("phone")
@@ -373,15 +373,15 @@ font1.addEventListener("click", chooseFont),
 const fr = new FileReader(),
   uploadBtn = document.querySelector(".js__profile-trigger"),
   fileField = document.querySelector(".js__profile-upload-btn"),
-  profileImage = document.querySelector(".js__profile-image"),
-  profilePreview = document.querySelector(".js__profile-preview");
+  imagePreview = document.querySelector(".js__profile-image"),
+  imageForm = document.querySelector(".js__profile-preview");
 function getImage(e) {
   var t = e.currentTarget.files[0];
   fr.addEventListener("load", writeImage), fr.readAsDataURL(t);
 }
 function writeImage() {
-  (profileImage.style.backgroundImage = `url(${fr.result})`),
-    (profilePreview.style.backgroundImage = `url(${fr.result})`),
+  (imagePreview.style.backgroundImage = `url(${fr.result})`),
+    (imageForm.style.backgroundImage = `url(${fr.result})`),
     localStorage.setItem("image", fr.result);
 }
 function fakeFileClick() {
@@ -389,7 +389,7 @@ function fakeFileClick() {
 }
 uploadBtn.addEventListener("click", fakeFileClick),
   fileField.addEventListener("change", getImage);
-const reseterButton = document.querySelector("#buttonReset"),
+const resetButton = document.querySelector("#resetButton"),
   resetLocalStorage = () => {
     localStorage.clear("palette"),
       localStorage.clear("font"),
@@ -401,7 +401,7 @@ const reseterButton = document.querySelector("#buttonReset"),
       localStorage.clear("linkedin"),
       localStorage.clear("github");
   },
-  resetColorPalette = () => {
+  resetPalette = () => {
     applyPalette1(), (palette1.checked = !0);
   },
   resetFont = () => {
@@ -414,8 +414,8 @@ const reseterButton = document.querySelector("#buttonReset"),
     (previewCardJob.innerHTML = "Front-end developer"), (userJob.value = "");
   },
   resetImage = () => {
-    (profileImage.style.backgroundImage = `url(${defaultImage})`),
-      (profilePreview.style.backgroundImage = `url(${defaultImage})`);
+    (imagePreview.style.backgroundImage = `url(${defaultImage})`),
+      (imageForm.style.backgroundImage = `url(${defaultImage})`);
   },
   resetPhone = () => {
     (phoneIcon.href = ""),
@@ -455,8 +455,8 @@ const reseterButton = document.querySelector("#buttonReset"),
       (userName.value = ""),
       (previewCardJob.innerHTML = "Front-end developer"),
       (userJob.value = ""),
-      (profileImage.style.backgroundImage = `url(${defaultImage})`),
-      (profilePreview.style.backgroundImage = `url(${defaultImage})`),
+      (imagePreview.style.backgroundImage = `url(${defaultImage})`),
+      (imageForm.style.backgroundImage = `url(${defaultImage})`),
       (phoneIcon.href = ""),
       (userTel.value = ""),
       phoneItem.classList.add("opacity"),
@@ -470,7 +470,7 @@ const reseterButton = document.querySelector("#buttonReset"),
       (userGithub.value = ""),
       githubItem.classList.add("opacity");
   };
-reseterButton.addEventListener("click", resetCardData);
+resetButton.addEventListener("click", resetCardData);
 let photoSend = "";
 function checkFilledInputs() {
   !1 === nameValidation() ||

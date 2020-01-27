@@ -1,72 +1,21 @@
 "use strict";
 
 const constants = require("./constants");
+const previewCard = require("./previewCard");
 
 const palette1 = document.querySelector(constants.palette1);
 const palette2 = document.querySelector(constants.palette2);
 const palette3 = document.querySelector(constants.palette3);
 const palette4 = document.querySelector(constants.palette4);
-const previewCardName = document.querySelector(constants.previewCardName);
-const previewCardHead = document.querySelector(constants.previewCardHead);
-const iconItems = document.querySelectorAll(constants.iconItems);
-const iconButtons = document.querySelectorAll(constants.iconButtons);
+
+const paletteConfig = constants.paletteConfig;
 let chosenPalette;
 
-//quizá los oldColorBorder no son necesarios...
-const paletteConfig = {
-  palette1: {
-    colorName: "darkGreenBlue",
-    colorHead: "borderPalette1",
-    borderColor: "#a2deaf",
-    oldColorName1: "slate",
-    oldColorName2: "jungleGreen",
-    oldColorName3: "driedBlood",
-    oldColorHead1: "borderPalette3",
-    oldColorHead2: "borderPalette4",
-    oldColorHead3: "borderPalette2",
-  },
-  palette2: {
-    colorName: "driedBlood",
-    colorHead: "borderPalette2",
-    borderColor: "#e95626",
-    oldColorName1: "slate",
-    oldColorName2: "jungleGreen",
-    oldColorName3: "darkGreenBlue",
-    oldColorHead1: "borderPalette3",
-    oldColorHead2: "borderPalette4",
-    oldColorHead3: "borderPalette1",
-  },
-  palette3: {
-    colorName: "slate",
-    colorHead: "borderPalette3",
-    borderColor: "#a0c0cf",
-    oldColorName1: "driedBlood",
-    oldColorName2: "jungleGreen",
-    oldColorName3: "darkGreenBlue",
-    oldColorHead1: "borderPalette2",
-    oldColorHead2: "borderPalette4",
-    oldColorHead3: "borderPalette1",
-  },
-  palette4: {
-    colorName: "jungleGreen",
-    colorHead: "borderPalette4",
-    borderColor: "#f15f06",
-    oldColorName1: "driedBlood",
-    oldColorName2: "slate",
-    oldColorName3: "darkGreenBlue",
-    oldColorHead1: "borderPalette2",
-    oldColorHead2: "borderPalette3",
-    oldColorHead3: "borderPalette1",
-  }
-};
-
-//COLORS
-
 function _setPalette(palette) {
-  if (!palette) {
-    chosenPalette = "1";
-  } else {
+  if (palette) {
     chosenPalette = palette;
+  } else {
+    chosenPalette = "1";
   }
 
   if (chosenPalette === "1") {
@@ -78,57 +27,21 @@ function _setPalette(palette) {
   } else if (chosenPalette === "4") {
     palette4.setAttribute("checked", true);
   }
-  applyPalette();
+  applyGenericPalette(paletteConfig[Number(chosenPalette) - 1]);
 }
 
-function choosePalette() {
+function choosePalette(event) {
   chosenPalette = event.currentTarget.value;
   localStorage.setItem("palette", chosenPalette);
-  applyPalette();
+  applyGenericPalette(paletteConfig[Number(chosenPalette) - 1]);
 }
 
-function applyPalette() {
-  if (palette1.checked) {
-    applyGenericPalette(paletteConfig.palette1);
-  } else if (palette2.checked) {
-    applyGenericPalette(paletteConfig.palette2);
-  } else if (palette3.checked) {
-    applyGenericPalette(paletteConfig.palette3);
-  } else if (palette4.checked) {
-    applyGenericPalette(paletteConfig.palette4);
-  }
+function applyGenericPalette(selectedPalette) {
+  previewCard.setPreviewPalette(selectedPalette);
 }
 
-function applyGenericPalette(paletteConfig) {
-  previewCardName.classList.remove(
-    paletteConfig.oldColorName1,
-    paletteConfig.oldColorName2,
-    paletteConfig.oldColorName3
-  );
-  previewCardName.classList.add(paletteConfig.colorName);
-
-  previewCardHead.classList.remove(
-    paletteConfig.oldColorHead1,
-    paletteConfig.oldColorHead2,
-    paletteConfig.oldColorHead3
-  );
-  previewCardHead.classList.add(paletteConfig.colorHead);
-
-  for (const iconItem of iconItems) {
-    iconItem.classList.remove(
-      paletteConfig.oldColorName1,
-      paletteConfig.oldColorName2,
-      paletteConfig.oldColorName3
-    );
-    iconItem.classList.add(paletteConfig.colorName);
-  }
-  for (const IconButton of iconButtons) {
-    IconButton.style.borderColor = paletteConfig.borderColor;
-  }
-}
-
-function _getChosenPalette() {
-  return chosenPalette;
+function _resetPalette() {
+  _setPalette();
 }
 
 palette1.addEventListener("click", choosePalette);
@@ -137,6 +50,6 @@ palette3.addEventListener("click", choosePalette);
 palette4.addEventListener("click", choosePalette);
 
 module.exports = {
-  getChosenPalette: _getChosenPalette,
-  setPalette: _setPalette
+  setPalette: _setPalette,
+  resetPalette: _resetPalette
 };

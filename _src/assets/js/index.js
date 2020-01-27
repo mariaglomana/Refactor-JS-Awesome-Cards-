@@ -4,12 +4,12 @@ const storage = require("./components/storage");
 const constants = require("./components/constants");
 const toggle = require("./components/toggle");
 const palettes = require("./components/palettes");
-const reset = require("./components/reset");
 const form = require("./components/form");
 const validation = require("./components/validation");
 const fonts = require("./components/fonts");
 const share = require("./components/share");
-const avatar = require("./components/avatar");
+const previewCard = require("./components/previewCard");
+const resetButton = document.querySelector(constants.resetButton);
 
 window.addEventListener("load", () => {
   const localStorage = storage.getLocalStorage();
@@ -22,5 +22,13 @@ window.addEventListener("load", () => {
   form.setEmail(localStorage.email);
   form.setLinkedin(localStorage.linkedin);
   form.setGithub(localStorage.github);
-  avatar.setImage(localStorage.avatar);
+  form.setImage(localStorage.previewCard);
+  previewCard.setPreview(localStorage);
+});
+
+resetButton.addEventListener("click", () => {
+  palettes.resetPalette();
+  fonts.resetFont();
+  form.resetFormData();
+  previewCard.resetImage();
 });

@@ -1,6 +1,6 @@
 function _getLocalStorage() {
   const palette = localStorage.getItem("palette");
-  const avatar = localStorage.getItem("image");
+  const previewCard = localStorage.getItem("image");
   const font = localStorage.getItem("font");
   const name = localStorage.getItem("name");
   const job = localStorage.getItem("job");
@@ -11,7 +11,7 @@ function _getLocalStorage() {
 
   return {
     palette,
-    avatar,
+    previewCard,
     font,
     name,
     job,
@@ -22,6 +22,19 @@ function _getLocalStorage() {
   };
 }
 
+const _resetLocalStorage = () => {
+  localStorage.clear("palette");
+  localStorage.clear("font");
+  localStorage.clear("name");
+  localStorage.clear("job");
+  localStorage.clear("image");
+  localStorage.clear("phone");
+  localStorage.clear("email");
+  localStorage.clear("linkedin");
+  localStorage.clear("github");
+};
+
 module.exports = {
+  resetLocalStorage: _resetLocalStorage,
   getLocalStorage: _getLocalStorage
 };

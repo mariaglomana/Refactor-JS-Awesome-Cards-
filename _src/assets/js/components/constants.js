@@ -1,7 +1,69 @@
 "use strict";
 
-// let chosenPalette = "";
-// let chosenFont = "";
+const _paletteConfig = [
+  {
+    colorName: "darkGreenBlue",
+    colorHead: "borderPalette1",
+    borderColor: "#a2deaf",
+    oldColorName1: "slate",
+    oldColorName2: "jungleGreen",
+    oldColorName3: "driedBlood",
+    oldColorHead1: "borderPalette3",
+    oldColorHead2: "borderPalette4",
+    oldColorHead3: "borderPalette2"
+  },
+  {
+    colorName: "driedBlood",
+    colorHead: "borderPalette2",
+    borderColor: "#e95626",
+    oldColorName1: "slate",
+    oldColorName2: "jungleGreen",
+    oldColorName3: "darkGreenBlue",
+    oldColorHead1: "borderPalette3",
+    oldColorHead2: "borderPalette4",
+    oldColorHead3: "borderPalette1"
+  },
+  {
+    colorName: "slate",
+    colorHead: "borderPalette3",
+    borderColor: "#a0c0cf",
+    oldColorName1: "driedBlood",
+    oldColorName2: "jungleGreen",
+    oldColorName3: "darkGreenBlue",
+    oldColorHead1: "borderPalette2",
+    oldColorHead2: "borderPalette4",
+    oldColorHead3: "borderPalette1"
+  },
+  {
+    colorName: "jungleGreen",
+    colorHead: "borderPalette4",
+    borderColor: "#f15f06",
+    oldColorName1: "driedBlood",
+    oldColorName2: "slate",
+    oldColorName3: "darkGreenBlue",
+    oldColorHead1: "borderPalette2",
+    oldColorHead2: "borderPalette3",
+    oldColorHead3: "borderPalette1"
+  }
+];
+
+const _fontConfig = [
+  {
+    f1: "fontMontserratBold",
+    f2: "fontCherrySwashBold",
+    f3: "fontKalamBold"
+  },
+  {
+    f1: "fontCherrySwashBold",
+    f2: "fontMontserratBold",
+    f3: "fontKalamBold"
+  },
+  {
+    f1: "fontKalamBold",
+    f2: "fontCherrySwashBold",
+    f3: "fontMontserratBold"
+  }
+];
 
 module.exports = {
   designContainer: "#designContainer",
@@ -46,10 +108,12 @@ module.exports = {
   githubItem: ".item_github",
   iconItems: "#preview_card-icons",
   iconButtons: ".item_btn",
-  profileImage: ".js__profile-image",
-  profilePreview: ".js__profile-preview",
+  imagePreview: ".js__profile-image",
+  imageForm: ".js__profile-preview",
   uploadBtn: ".js__profile-trigger",
   fileField: ".js__profile-upload-btn",
   defaultImage: "./assets/images/portrait.jpg",
-  reseterButton: "#buttonReset"
+  resetButton: "#resetButton",
+  paletteConfig: _paletteConfig,
+  fontConfig: _fontConfig
 };
