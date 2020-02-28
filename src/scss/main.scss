@@ -1,0 +1,15 @@
+@import 'vendor/normalize';
+
+@import 'core/variables';
+@import 'core/mixins';
+@import 'core/functions';
+
+@import 'layout/header';
+@import 'layout/footer';
+@import 'layout/form-toggle';
+
+@import 'layout/mediaqueries_form';
+
+body {
+	margin: 0;
+}
